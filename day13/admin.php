@@ -3,6 +3,7 @@ session_start();
 if(!isset($_SESSION['admin_logged_in'])){
     header("Location: login.php");
     exit();
+
 }
 
 require_once("config.php");
@@ -16,8 +17,8 @@ $result = $conn->query($sql);
 if(!$result){
     die("Database query failed: ". $conn->error);
 }
-
 ?>
+
 
 
 
@@ -118,24 +119,28 @@ if(!$result){
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example rows -->
+                <!-- Example rows -->
                 <?php
                 if($result->num_rows > 0){
-                    while (row = $result->fetch_assoc()){
+                    while ($row= $result->fetch_assoc()){
                         echo "<tr>
-                        <td> {$row[id]} </td>
+                        <td> {$row['id']} </td>
                         <td>".htmlspecialchars($row['username'])."</td>
                         <td>".htmlspecialchars($row['email'])."</td>
-                        
+                        <td>
+                        <a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                        <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure?');\">Delete</a>
+                        </td>
                         ";
                     }
+                }else{
+                    echo "<tr>
+                    <td colspan='4' class='text-center'>No users found</td>
+                    </tr>";
                 }
 
-
-
-
-
-                    <tr>
+                ?>
+                <!--<tr>
                         <td>1</td>
                         <td>john_doe</td>
                         <td>john@example.com</td>
@@ -152,7 +157,7 @@ if(!$result){
                             <a href="#" class="btn btn-warning btn-sm">Edit</a>
                             <a href="#" class="btn btn-danger btn-sm">Delete</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
