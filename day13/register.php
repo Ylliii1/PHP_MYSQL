@@ -17,7 +17,7 @@
             if($result->num_rows>0){
                 $error="Username or email already exists";
             }else{
-                $hashed_password=mb5($password);
+                $hashed_password=md5($password);
                 $sql="INSERT INTO users(username,email,password) VALUES ('$username','$email','$hashed_password')";
                 if($conn->query($sql)==TRUE){
                     $success="Registration successful! You can now <a href='login.php'>Login here </a>.";
@@ -27,10 +27,6 @@
             }
         }
     }
-
-
-
-
 ?>
 
 <!DOCTYPE html>

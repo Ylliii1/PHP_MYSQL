@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(200deg,#0077b6, #ffffff ); /* Light neutral background */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            background: #ffffff; /* Clean white card */
+        }
+        .card-header {
+            background: #0077b6; /* Calm blue */
+            color: #ffffff;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-primary {
+            background: #0077b6; /* Matching blue for consistency */
+            border: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px #01649a;; /* Dynamic hover */
+        }
+        .form-control:focus {
+            box-shadow: 0 0 4px rgba(0, 119, 182, 0.5); /* Subtle blue glow */
+            border-color: #0077b6;
+        }
+        .card-footer {
+            font-size: 0.9rem;
+            text-align: center;
+            color: #495057; /* Neutral text color */
+        }
+        .card-footer a {
+            color: #0077b6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .card-footer a:hover {
+            text-decoration: underline;
+            color: #01649a;
+        }
+        .title-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .light-text {
+            font-size: 0.9rem;
+            color: #ffffff; /* Subtle text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card">
+                    <div class="card-header py-4">
+                        <span class="title-text">Create Your Account</span><br>
+                        <span class="light-text">It's quick and easy</span>
+                    </div>
+                    <div class="card-body">
+                        <form action="signup.php" method="post">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <p>Already have an account? <a href="login.html">Log In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic Behind the Process
+Signup Form:
+Captures user details and sends them securely to the server.
+
+Data Processing (signup.php):
+Validates and securely stores the data using hashed passwords.
+
+Data Retrieval and Display (view_users.php):
+Fetches the stored data and displays it in a user-friendly table.
+ -->
+ 
+</body>
+</html>

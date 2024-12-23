@@ -3,7 +3,6 @@ session_start();
 if(!isset($_SESSION['admin_logged_in'])){
     header("Location: login.php");
     exit();
-
 }
 
 require_once("config.php");
@@ -18,8 +17,6 @@ if(!$result){
     die("Database query failed: ". $conn->error);
 }
 ?>
-
-
 
 
 <?php require_once("header.php"); ?>
