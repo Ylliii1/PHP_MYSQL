@@ -88,7 +88,7 @@
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
         <div class="text-center mt-3">
-            <p >Don't have an account? <a style="color: #4B5945" href="register.php">Register here</a></p>
+            <p >Don't have an account? <a style="color: #4B5945" href="signup.php">Register here</a></p>
         </div>
     </div>
 </body>
