@@ -32,10 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $date = $_POST['date'];
 
-    $stmt = $conn->prepare("UPDATE expenses SET amount = ?, category_id = ?, description = ?, date = ? WHERE id = ?");
-    $stmt->bind_param("disss", $amount, $category_id, $description, $date, $expense_id);
+    $sql = $conn->prepare("UPDATE expenses SET amount = ?, category_id = ?, description = ?, date = ? WHERE id = ?");
+    $sql->bind_param("disss", $amount, $category_id, $description, $date, $expense_id);
     
-    if ($stmt->execute()) {
+    if ($sql->execute()) {
         header("Location: dashboard.php");
         exit();
     }
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2 class="text-center mb-4">Update Expense</h2>
 
     <form method="POST">
-        <div class="mb-3">
+        <div class="mb-4">
             <input type="number" name="amount" class="form-control" placeholder="Amount" value="<?= $expense['amount'] ?>" required>
         </div>
         <div class="mb-3">

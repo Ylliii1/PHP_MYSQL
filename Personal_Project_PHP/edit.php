@@ -9,7 +9,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch the expense to be edited based on the provided ID
 if (isset($_GET['id'])) {
     $expense_id = $_GET['id'];
 
@@ -17,10 +16,10 @@ if (isset($_GET['id'])) {
             FROM expenses e
             JOIN categories c ON e.category_id = c.id
             WHERE e.user_id = ? AND e.id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $user_id, $expense_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql = $conn->prepare($sql);
+    $sql->bind_param("ii", $user_id, $expense_id);
+    $sql->execute();
+    $result = $sql->get_result();
 
     if ($result->num_rows == 0) {
         header("Location: dashboard.php");
@@ -30,21 +29,19 @@ if (isset($_GET['id'])) {
     $expense = $result->fetch_assoc();
 }
 
-// Handle the update request after the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = $_POST['amount'];
     $category_id = $_POST['category'];
     $description = $_POST['description'];
     $date = $_POST['date'];
     
-    // You don't need to fetch the ID from POST, just use the one from GET
     $expense_id = $_GET['id'];
 
     $sql = "UPDATE expenses SET amount = ?, category_id = ?, description = ?, date = ? WHERE id = ? AND user_id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("dissii", $amount, $category_id, $description, $date, $expense_id, $user_id);
+    $sql = $conn->prepare($sql);
+    $sql->bind_param("dissii", $amount, $category_id, $description, $date, $expense_id, $user_id);
 
-    if ($stmt->execute()) {
+    if ($sql->execute()) {
         header("Location: dashboard.php");
         exit();
     }

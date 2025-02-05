@@ -15,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $date = $_POST['date'];
 
-    $stmt = $conn->prepare("INSERT INTO expenses (user_id, category_id, amount, description, date) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("iidss", $user_id, $category_id, $amount, $description, $date);
+    $sql = $conn->prepare("INSERT INTO expenses (user_id, category_id, amount, description, date) VALUES (?, ?, ?, ?, ?)");
+    $sql->bind_param("iidss", $user_id, $category_id, $amount, $description, $date);
     
-    if ($stmt->execute()) {
+    if ($sql->execute()) {
         header("Location: dashboard.php");
         exit();
     }
